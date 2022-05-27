@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GeoClock</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <style>
+      .fonter {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+      body {
+        background-image: url("https://source.unsplash.com/1600x720/?Earth,dark,space,night");
+      }
+      .mainbody {
+        /* other base styles go here */
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand fonter" href="#"><h2>GeoClock</h2></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search Location"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-primary" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="mainbody">
+      <div class="container my-4 ">
+        <div class="card mb-3" style="max-width: 540px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                src="https://source.unsplash.com/180x173/?mumbai"
+                class="img-fluid rounded-start"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h2 class="card-title">
+                  <span id="timer"></span>
+                </h2>
+                <h5 class="card-title">
+                  <span id="dayer"></span>
+                </h5>
+                <h5 class="card-title">
+                  <span id="dater"></span>
+                </h5>
+                <p class="card-text">
+                  <small class="text-muted">Mumbai, Maharashtra</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      let a;
+      let date;
+      let time;
+      let week = {
+        0: "Sunday",
+        1: "Monday",
+        2: "Tuesday",
+        3: "Wednesday",
+        4: "Thursday",
+        5: "Friday",
+        6: "Saturday",
+      };
+      let moths = {
+        0: "January",
+        1: "February",
+        2: "March",
+        3: "April",
+        4: "May",
+        5: "June",
+        6: "July",
+        7: "August",
+        8: "September",
+        9: "October",
+        10: "November",
+        11: "December",
+      };
+      let b = new Date();
+    
+      let tempdate = b.getDate();
+      let tempmonth = b.getMonth()+1;
+      let tempyear = b.getFullYear();
+      date = tempdate + ' ' + moths[tempmonth] + ' ' + tempyear;
+     
+      day = b.getDay();
+      setInterval(() => {
+        a = new Date();
+        let currhour = a.getHours();
+        if (currhour < 10) currhour = "0" + currhour;
+        let currmin = a.getMinutes();
+        if (currmin < 10) currmin = "0" + currmin;
+        let currsec = a.getSeconds();
+        if (currsec < 10) currsec = "0" + currsec;
+        time = currhour + ":" + currmin + ":" + currsec;
+
+        document.getElementById("timer").innerHTML = time;
+      }, 1000);
+
+      document.getElementById("dater").innerHTML = date;
+      document.getElementById("dayer").innerHTML = week[day];
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
